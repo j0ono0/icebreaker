@@ -4,7 +4,7 @@ from urllib.request import urlopen
 from pinout import config
 from pinout.core import Group, Image
 from pinout.components.layout import Diagram, Panel
-from pinout.components.pinlabel import PinLabelGroup
+from pinout.components.pinlabel import PinLabelGroup, PinLabel
 from pinout.components.annotation import AnnotationLabel
 from pinout.components.text import TextBlock
 from pinout.components import leaderline as lline
@@ -47,9 +47,9 @@ for (a, b, c) in cr:
 
 ################################################################
 # Create a new diagram, add styles and a base panel
-diagram = Diagram(1012, 1012, "pinout")
+diagram = Diagram(1012, 1600, "pinout")
 diagram.add_stylesheet("styles.css")
-content = diagram.add(Panel(width=1012, height=1012, tag="panel__content"))
+content = diagram.add(Panel(width=1012, height=1600, tag="panel__content"))
 
 ################################################################
 # Create a group to hold the actual diagram components.
@@ -92,8 +92,20 @@ front.add(
 
 
 ################################################################
+# USB plug detail
+usb_pins = content.add(Group(506, 500))
+usb_pins.add(
+    Image(
+        "bitsy-v1.1b_back_detail_1.png",
+        width=100,
+        height=200,
+        embed=True,
+    )
+)
+
+################################################################
 # Back view
-back = content.add(Group(406, 500))
+back = content.add(Group(406, 800))
 back.add(
     Image(
         "bitsy-v1.1b_back_resized.png",
@@ -171,6 +183,52 @@ back.add(
         label_pitch=(0, 0),
         labels=labeldata[35:36],
         scale=(1, -1),
+        leaderline=lline.Curved(direction="vh"),
+    )
+)
+
+################################################################
+# 2 row pin detail
+doublerow = content.add(Group(406, 1300))
+doublerow.add(
+    Image(
+        "bitsy-v1.1b_back_detail_2.png",
+        width=100,
+        height=200,
+        embed=True,
+    )
+)
+doublerow.add(
+    PinLabelGroup(
+        x=15,
+        y=44,
+        pin_pitch=(0, 28.25),
+        label_start=(80, 0),
+        label_pitch=(0, 28.25),
+        labels=labeldata[43:47],
+        scale=(-1, 1),
+    )
+)
+doublerow.add(
+    PinLabelGroup(
+        x=44,
+        y=44,
+        pin_pitch=(0, 28.25),
+        label_start=(80, 0),
+        label_pitch=(0, 28.25),
+        labels=labeldata[37:42],
+        scale=(1, 1),
+    )
+)
+doublerow.add(
+    PinLabelGroup(
+        x=15,
+        y=44 + 28.25 * 4,
+        pin_pitch=(0, 28.25),
+        label_start=(109, 28.25),
+        label_pitch=(0, 28.25),
+        labels=labeldata[47:48],
+        scale=(1, 1),
         leaderline=lline.Curved(direction="vh"),
     )
 )
