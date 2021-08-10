@@ -1,0 +1,83 @@
+
+
+text {
+    font-family: Verdana, Georgia, sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+}
+
+
+
+    .pinlabel__leader{
+        stroke-width: 2;
+        fill: none;
+    }
+
+    .pinlabel__text{
+        dominant-baseline: central;
+        fill: #fff;
+        
+        font-weight: bold;
+        stroke-width: 0;
+        text-anchor: middle;
+    }
+
+
+
+        .pwr .pinlabel__body{
+            fill: rgb(96, 81, 6);
+        }
+        .pwr .pinlabel__leader{
+            stroke: rgb(96, 81, 6);
+        }
+        .pwr .swatch__body {
+            fill: rgb(96, 81, 6);
+        }
+        .fpga_id .pinlabel__body{
+            fill: rgb(27, 33, 78);
+        }
+        .fpga_id .pinlabel__leader{
+            stroke: rgb(27, 33, 78);
+        }
+        .fpga_id .swatch__body {
+            fill: rgb(27, 33, 78);
+        }
+        .fpga_name .pinlabel__body{
+            fill: rgb(201, 129, 43);
+        }
+        .fpga_name .pinlabel__leader{
+            stroke: rgb(201, 129, 43);
+        }
+        .fpga_name .swatch__body {
+            fill: rgb(201, 129, 43);
+        }
+        .pin_id .pinlabel__body{
+            fill: rgb(64, 78, 167);
+        }
+        .pin_id .pinlabel__leader{
+            stroke: rgb(64, 78, 167);
+        }
+        .pin_id .swatch__body {
+            fill: rgb(64, 78, 167);
+        }
+        .gnd .pinlabel__body{
+            fill: rgb(7, 92, 237);
+        }
+        .gnd .pinlabel__leader{
+            stroke: rgb(7, 92, 237);
+        }
+        .gnd .swatch__body {
+            fill: rgb(7, 92, 237);
+        }
+
+
+    .panel__inner {
+        fill: #fff;
+    }
+    .panel__outer {
+        fill: #333;
+    }
+
+
+
+
