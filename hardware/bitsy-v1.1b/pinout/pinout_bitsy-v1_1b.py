@@ -47,17 +47,26 @@ for (a, b, c) in cr:
 
 ################################################################
 # Create a new diagram, add styles and a base panel
-diagram = Diagram(1012, 800, "pinout")
+diagram = Diagram(1012, 1012, "pinout")
 diagram.add_stylesheet("styles.css")
-content = diagram.add(Panel(width=1012, height=800, tag="panel__content"))
+content = diagram.add(Panel(width=1012, height=1012, tag="panel__content"))
 
+################################################################
 # Create a group to hold the actual diagram components.
-graphic = content.add(Group(506, 10))
+# x value centres the hardware
+front = content.add(Group(406, 10))
 
 # Add and embed an image
-graphic.add(Image("bitsy-v1.1b_front_resized.png", width=200, height=411, embed=True))
+front.add(
+    Image(
+        "bitsy-v1.1b_front_resized.png",
+        width=200,
+        height=411,
+        embed=True,
+    )
+)
 
-graphic.add(
+front.add(
     PinLabelGroup(
         x=2,
         y=28,
@@ -69,7 +78,7 @@ graphic.add(
     )
 )
 
-graphic.add(
+front.add(
     PinLabelGroup(
         x=198,
         y=28,
@@ -77,7 +86,92 @@ graphic.add(
         label_start=(30, 0),
         label_pitch=(0, 28.25),
         scale=(1, 1),
-        labels=labeldata[30:14:-1],
+        labels=labeldata[29:14:-1],
+    )
+)
+
+
+################################################################
+# Back view
+back = content.add(Group(406, 500))
+back.add(
+    Image(
+        "bitsy-v1.1b_back_resized.png",
+        width=200,
+        height=411,
+        embed=True,
+    )
+)
+back.add(
+    PinLabelGroup(
+        x=90,
+        y=86,
+        pin_pitch=(0, 0),
+        label_start=(140, 0),
+        label_pitch=(0, 0),
+        labels=labeldata[30:31],
+        scale=(1, 1),
+        leaderline=lline.Curved(direction="vh"),
+    )
+)
+back.add(
+    PinLabelGroup(
+        x=50,
+        y=170,
+        pin_pitch=(0, 0),
+        label_start=(180, 56),
+        label_pitch=(0, 0),
+        labels=labeldata[31:32],
+        scale=(1, -1),
+        leaderline=lline.Curved(direction="vh"),
+    )
+)
+back.add(
+    PinLabelGroup(
+        x=150,
+        y=170,
+        pin_pitch=(0, 0),
+        label_start=(80, 28),
+        label_pitch=(0, 0),
+        labels=labeldata[32:33],
+        scale=(1, -1),
+        leaderline=lline.Curved(direction="vh"),
+    )
+)
+back.add(
+    PinLabelGroup(
+        x=50,
+        y=287,
+        pin_pitch=(0, 0),
+        label_start=(180, 90),
+        label_pitch=(0, 0),
+        labels=labeldata[33:34],
+        scale=(1, -1),
+        leaderline=lline.Curved(direction="vh"),
+    )
+)
+back.add(
+    PinLabelGroup(
+        x=122,
+        y=292,
+        pin_pitch=(0, 0),
+        label_start=(108, 60),
+        label_pitch=(0, 0),
+        labels=labeldata[34:35],
+        scale=(1, -1),
+        leaderline=lline.Curved(direction="vh"),
+    )
+)
+back.add(
+    PinLabelGroup(
+        x=150,
+        y=292,
+        pin_pitch=(0, 0),
+        label_start=(80, 30),
+        label_pitch=(0, 0),
+        labels=labeldata[35:36],
+        scale=(1, -1),
+        leaderline=lline.Curved(direction="vh"),
     )
 )
 
