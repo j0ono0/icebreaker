@@ -82,4 +82,4 @@ graphic.add(
 )
 
 # Output from command-line:
-# >>> py -m pinout.manager -e pinout_bitsy-v1_1b pinout_wip_bisty-v1.1b.svg -o
+# >>> py -m pinout.manager -e pinout_bitsy-v1_1b pinout_wip_bitsy-v1.1b.svg -o
