@@ -8,31 +8,76 @@ text {
 
 
 
-    .pinlabel__leader{
-        stroke-width: 2;
-        fill: none;
-    }
+.pinlabel__leader{
+    stroke-width: 2;
+    fill: none;
+}
 
-    .pinlabel__text{
-        dominant-baseline: central;
-        fill: #fff;
-        
-        font-weight: bold;
-        stroke-width: 0;
-        text-anchor: middle;
-    }
+.pinlabel__text{
+    dominant-baseline: central;
+    fill: #fff;
+    font-size: 12px;
+    
+    font-weight: normal;
+    stroke-width: 0;
+    text-anchor: middle;
+}
 
 
 
         .pwr .pinlabel__body{
-            fill: rgb(96, 81, 6);
+            fill: rgb(141, 25, 25);
         }
         .pwr .pinlabel__leader{
-            stroke: rgb(96, 81, 6);
+            stroke: rgb(141, 25, 25);
         }
         .pwr .swatch__body {
-            fill: rgb(96, 81, 6);
+            fill: rgb(141, 25, 25);
         }
+
+        .utility .pinlabel__body{
+            fill: rgb(192, 74, 179);
+        }
+        .utility .pinlabel__leader{
+            stroke: rgb(192, 74, 179);
+        }
+        .utility .swatch__body {
+            fill: rgb(192, 74, 179);
+        }
+        
+        .usb .pinlabel__body{
+            fill: rgb(120, 181, 36);
+        }
+        .usb .pinlabel__leader{
+            stroke: rgb(120, 181, 36);
+        }
+        .usb .swatch__body {
+            fill: rgb(120, 181, 36);
+        }
+        
+        .spi .pinlabel__body{
+            fill: rgb(7, 145, 131);
+        }
+        .spi .pinlabel__leader{
+            stroke: rgb(7, 145, 131);
+        }
+        .spi .swatch__body {
+            fill: rgb(7, 145, 131);
+        }
+        
+        .notes .pinlabel__body{
+            fill: rgb(236, 236, 236);
+        }
+        .notes .pinlabel__leader{
+            stroke: rgb(236, 236, 236);
+        }
+        .notes .swatch__body {
+            fill: rgb(236, 236, 236);
+        }
+        .notes text{
+            fill: #000;
+        }
+
         .fpga_id .pinlabel__body{
             fill: rgb(27, 33, 78);
         }
@@ -61,13 +106,13 @@ text {
             fill: rgb(64, 78, 167);
         }
         .gnd .pinlabel__body{
-            fill: rgb(7, 92, 237);
+            fill: rgb(70, 70, 70);
         }
         .gnd .pinlabel__leader{
-            stroke: rgb(7, 92, 237);
+            stroke: rgb(70, 70, 70);
         }
         .gnd .swatch__body {
-            fill: rgb(7, 92, 237);
+            fill: rgb(70, 70, 70);
         }
 
 

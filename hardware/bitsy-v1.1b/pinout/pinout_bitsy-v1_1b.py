@@ -1,14 +1,10 @@
 import csv
 from urllib.request import urlopen
 
-from pinout import config
 from pinout.core import Group, Image
 from pinout.components.layout import Diagram, Panel
-from pinout.components.pinlabel import PinLabelGroup, PinLabel
-from pinout.components.annotation import AnnotationLabel
-from pinout.components.text import TextBlock
+from pinout.components.pinlabel import PinLabelGroup
 from pinout.components import leaderline as lline
-from pinout.components.legend import Legend
 
 
 # Load pin data from a web resource
@@ -20,29 +16,28 @@ cr = csv.reader(lines)
 ################################################################
 # Manage data importing and parsing
 
-# label configs
-lbl_conf = None
-sm_lbl = {"body": {"width": 45}}
-xs_lbl = {"body": {"width": 35}}
-xl_lbl = {"body": {"width": 182}}
 
+tags = next(cr)
 # Parse data for use as pinlabels (blank labels are dropped here)
-labeldata = []
-for (a, b, c) in cr:
-    # Conditionally assign values where needed
-    lbl_conf = sm_lbl
-    if a == "GND":
-        tag = "gnd"
-    elif a.startswith("Vin") or a.startswith("3.3V"):
-        tag = "pwr"
-        lbl_conf = xl_lbl
-    else:
-        tag = "pin_id"
+# padding labeldata with tag row so row index matches spreadsheet
+labeldata = [tags]
+for row in cr:
+    label_row = []
+    for name, tag in zip(row, tags):
+        # Omit labels with no name
+        if name:
+            # Conditionally apply config
+            if tag == "notes":
+                cfg = {"body": {"width": 140, "x": 0}}
+            elif tag.endswith("_id"):
+                cfg = {"body": {"width": 45}}
+            else:
+                cfg = {}
+            if tag == tags[1] and len(label_row) == 0:
+                cfg["body"]["x"] = 57
+            label_row.append((name, tag, cfg))
 
-    lbl_a = [(str(a), tag, lbl_conf)] if a else []
-    lbl_b = [(str(b), "fpga_id", sm_lbl)] if b else []
-    lbl_c = [(str(c), "fpga_name")] if c else []
-    labeldata += [lbl_a + lbl_b + lbl_c]
+    labeldata.append(label_row)
 
 
 ################################################################
@@ -65,7 +60,7 @@ front.add(
         embed=True,
     )
 )
-
+# Front left edge
 front.add(
     PinLabelGroup(
         x=2,
@@ -77,7 +72,7 @@ front.add(
         labels=labeldata[1:15],
     )
 )
-
+# Front right edge
 front.add(
     PinLabelGroup(
         x=198,
@@ -100,6 +95,17 @@ usb_pins.add(
         width=100,
         height=200,
         embed=True,
+    )
+)
+usb_pins.add(
+    PinLabelGroup(
+        x=80,
+        y=66.5,
+        pin_pitch=(0, 22.5),
+        label_start=(30, -8.25),
+        label_pitch=(0, 28),
+        scale=(1, 1),
+        labels=labeldata[49:53],
     )
 )
 
@@ -155,7 +161,7 @@ back.add(
         x=50,
         y=287,
         pin_pitch=(0, 0),
-        label_start=(180, 90),
+        label_start=(180, 81),
         label_pitch=(0, 0),
         labels=labeldata[33:34],
         scale=(1, -1),
@@ -167,7 +173,7 @@ back.add(
         x=122,
         y=292,
         pin_pitch=(0, 0),
-        label_start=(108, 60),
+        label_start=(108, 58),
         label_pitch=(0, 0),
         labels=labeldata[34:35],
         scale=(1, -1),
@@ -198,17 +204,7 @@ doublerow.add(
         embed=True,
     )
 )
-doublerow.add(
-    PinLabelGroup(
-        x=15,
-        y=44,
-        pin_pitch=(0, 28.25),
-        label_start=(80, 0),
-        label_pitch=(0, 28.25),
-        labels=labeldata[43:47],
-        scale=(-1, 1),
-    )
-)
+# inboard double row
 doublerow.add(
     PinLabelGroup(
         x=44,
@@ -220,6 +216,7 @@ doublerow.add(
         scale=(1, 1),
     )
 )
+# IO2
 doublerow.add(
     PinLabelGroup(
         x=15,
@@ -227,9 +224,21 @@ doublerow.add(
         pin_pitch=(0, 28.25),
         label_start=(109, 28.25),
         label_pitch=(0, 28.25),
-        labels=labeldata[47:48],
+        labels=labeldata[42:43],
         scale=(1, 1),
         leaderline=lline.Curved(direction="vh"),
+    )
+)
+# Edge double row
+doublerow.add(
+    PinLabelGroup(
+        x=15,
+        y=44,
+        pin_pitch=(0, 28.25),
+        label_start=(80, 0),
+        label_pitch=(0, 28.25),
+        labels=labeldata[44:48],
+        scale=(-1, 1),
     )
 )
 
